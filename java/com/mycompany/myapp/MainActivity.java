@@ -42,6 +42,7 @@ public class MainActivity extends Activity {
 		webView.getSettings().setJavaScriptEnabled(true);
 		webView.getSettings().setDatabaseEnabled(true);
 		webView.getSettings().setDomStorageEnabled(true);	
+		webView.getSettings().setMediaPlaybackRequiresUserGesture(false);
 		webView.getSettings().setAllowUniversalAccessFromFileURLs(true);
 		//webView.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
 		webView.loadUrl("file:///android_asset/www/index.html");
