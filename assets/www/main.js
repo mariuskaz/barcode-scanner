@@ -1,7 +1,7 @@
 let view = {
 
     state: {
-        stocks: [
+        locations: [
             { value: 'P100', title: 'P100 Panevėžiuko metalai' },
             { value: 'P101', title: 'P101 Gambinaičio sandėlis' },
             { value: 'K100', title: 'K100 Kauno žaliavų sandėlis' },
@@ -44,13 +44,14 @@ let view = {
     },
     
     submit() {
-        let qty = view.get("input").value,
-        stock = document.querySelector('input[name=stock]:checked').value,
+        let item = scanner.lastResult,
+        qty = view.get("input").value,
+        location = document.querySelector('input[name=stock]:checked').value,
         canvas = Quagga.canvas.dom.image,
-        item = document.createElement("div")
-        item.setAttribute('class','thumbnail')
-        item.innerHTML = "<img src='"+canvas.toDataURL()+"'/><h3>"+scanner.lastResult+": "+qty+"</h3>"
-        this.get('results').prepend(item)
+        result = document.createElement("div")
+        result.setAttribute('class','thumbnail')
+        result.innerHTML = "<img src='"+canvas.toDataURL()+"'/><h3>"+item+": "+qty+"</h3>"
+        this.get('results').prepend(result)
         this.hide('popup').show('scanner')
         Quagga.start()
         this.back()
@@ -61,7 +62,7 @@ scanner = {
     init() {
         Quagga.init(this.state, function(err) {
             if (err) alert(err)
-            Quagga.start()
+                else Qagga.start()
         })
     },
 
