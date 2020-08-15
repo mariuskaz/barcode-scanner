@@ -1,0 +1,248 @@
+@charset "UTF-8";
+      
+body {
+  margin:0;
+  padding:0;
+  overflow:hidden;
+}
+
+button {
+  border:0;
+  background:none;
+  color:darkCyan;
+  font-weight:bold;
+  padding:10px 20px;
+}
+
+button:hover {
+  background:lightgray;
+}  
+
+.full-screen {
+  position:absolute;
+  height:100vh;
+  width:100vw;
+  padding:20px 10px 10px 20px;
+  background-color:white;
+}
+
+.title {
+  font-family:calibri,serif;
+  font-size:14pt;
+  font-weight:bold;
+  height:45px;
+  line-height:45px;
+  width:100%;
+  color:gray;
+  text-align:center;
+  z-index:0;
+  overflow:hidden;
+}
+
+.thumbnail {
+  display:inline-block;
+  border:1px dashed gray;
+  width:40vw;;
+  height:auto;
+  padding:5px;
+  margin:0 5px;
+  text-align:center;
+  z-index:10;
+}
+
+.thumbnail img {
+  display:inline;
+  width:100%;
+  height:auto;
+}
+
+.thumbnail h3 {
+  font-size:10pt;
+  padding:1px;
+  margin:1px;
+}
+
+.footer {
+  position:absolute;
+  text-align:right;
+  bottom:40px;
+  right:40px;
+}    
+
+.overlay {
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.overlay__content {
+    top: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 800px;
+}
+
+.overlay__close {
+    position: absolute;
+    right: 0;
+    padding: 0.5rem;
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    text-align: center;
+    background-color: white;
+    cursor: pointer;
+    border: 3px solid black;
+    font-size: 1.5rem;
+    margin: -1rem;
+    border-radius: 2rem;
+    z-index: 100;
+    box-sizing: content-box;
+}
+
+.overlay__content video {
+    width: 100%;
+    height: 100%;
+}
+
+.overlay__content canvas {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+
+#input {
+  border:0;
+  border-bottom:1px solid #22aadd;
+  height:30px;
+  width:120px;
+  font-size:14pt;
+  padding-left:10px;
+}
+
+#input:focus {
+  outline:none;
+}
+
+#results {
+  display:inline-block;
+  height:auto;
+  width:100%;
+  overflow-x: auto;
+  overflow-y:hidden;
+  white-space: nowrap;
+}
+
+#popup {
+  display:none;
+  z-index:99999;
+}
+
+#interactive.viewport {
+    position: relative; 
+    background:black;
+    overflow:hidden;
+    height:60vh;
+}
+   
+#interactive.viewport > canvas, #interactive.viewport > video {
+    max-width: 100%;
+    width: 100%;
+    heightt:50vh;
+}
+
+canvas.drawing, canvas.drawingBuffer {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#scanline {
+    position:absolute;
+    background: red;
+    display:block;
+    height:3px;
+    width:50%;
+    top:30%;
+    left:0;right:0;
+    margin:auto;
+    z-index:9999;
+}
+
+.space {
+    height:10px;
+}
+
+
+/* Custiom radio input */
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  padding-top:2px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 18px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color 
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+} */
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #2196F3;
+} 
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
