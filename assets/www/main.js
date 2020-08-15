@@ -40,52 +40,13 @@ let view = {
     }
 },
 
-resultCollector = Quagga.ResultCollector.create({
-    capture: true,
-    capacity: 20,
-    blacklist: [
-        { code: "WIWV8ETQZ1", format: "code_93" }, 
-        { code: "EH3C-%GU23RK3", format: "code_93" }, 
-        { code: "O308SIHQOXN5SA/PJ", format: "code_93" }, 
-        { code: "DG7Q$TV8JQ/EN", format: "code_93" }, 
-        { code: "VOFD1DB5A.1F6QU", format: "code_93" }, 
-        { code: "4SO64P4X8 U4YUU1T-", format: "code_93" }
-    ],
-    filter: function(codeResult) {
-        // only store results which match this constraint
-        // e.g.: codeResult
-        return true;
-    }
-}),
-
 scanner = {
     init() {
         let self = this
         Quagga.init(this.state, function(err) {
-            if (err) return self.handleError(err)
-            scanner.attachListeners()
-            scanner.checkCapabilities()
+            if (err) alert(err)
             Quagga.start()
         })
-    },
-
-    handleError(err) {
-        alert(err)
-    },
-
-    checkCapabilities() {
-        let track = Quagga.CameraAccess.getActiveTrack(),
-        capabilities = {}
-        if (typeof track.getCapabilities === 'function') {
-            capabilities = track.getCapabilities()
-        }
-        //this.applySettingsVisibility('zoom', capabilities.zoom)
-        //this.applySettingsVisibility('torch', capabilities.torch)
-    },
-
-    attachListeners() {
-        var self = this;
-        //self.initCameraSelection();
     },
 
     _printCollectedResults() {
