@@ -2,9 +2,9 @@ let view = {
 
     state: {
         locations: [
-            { value: 'P100', title: 'P100 Panevėžiuko metalai' },
-            { value: 'P101', title: 'P101 Gambinaičio sandėlis' },
-            { value: 'K100', title: 'K100 Kauno žaliavų sandėlis' },
+            { value: 'P100', name: 'P100 Panevėžiuko metalai' },
+            { value: 'P101', name: 'P101 Gambinaičio sandėlis' },
+            { value: 'K100', name: 'K100 Kauno žaliavų sandėlis' },
         ],
     },
 
@@ -54,7 +54,7 @@ let view = {
         image = Quagga.canvas.dom.image,
         result = document.createElement('div')
         result.setAttribute('class','thumbnail')
-        result.innerHTML = "<img src='"+image.toDataURL()+"'/><h3>"+item+": "+qty+"</h3>"
+        result.innerHTML = "<img src='"+image.toDataURL()+"'/><h3>"+"["+location+"] "+item+": "+qty+"</h3>"
         this.get('results').prepend(result)
         this.back()
     }
