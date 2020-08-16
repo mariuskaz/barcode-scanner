@@ -64,7 +64,7 @@ scanner = {
     init() {
         Quagga.init(this.state, function(err) {
             if (err) alert(err)
-                else Qagga.start()
+                else Quagga.start()
         })
     },
 
