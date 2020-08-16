@@ -2,9 +2,9 @@ let view = {
 
     state: {
         locations: [
-            { value: 'P100', name: 'P100 Panevėžiuko metalai' },
-            { value: 'P101', name: 'P101 Gambinaičio sandėlis' },
-            { value: 'K100', name: 'K100 Kauno žaliavų sandėlis' },
+            { id: 'P100', name: 'P100 Panevėžiuko metalai' },
+            { id: 'P101', name: 'P101 Gambinaičio sandėlis' },
+            { id: 'K100', name: 'K100 Kauno žaliavų sandėlis' },
         ],
     },
 
@@ -20,15 +20,15 @@ let view = {
         history.back()
     },
 
-    update(data) {
-        for (let id in data) {
+    update(items) {
+        for (let id in items) {
             let el = this.get(id)
             switch (el.nodeName) {
                 case 'INPUT':
-                    el.value = data[id]
+                    el.value = items[id]
                     break
                 case 'DIV':
-                    el.innerHTML = data[id]
+                    el.innerHTML = items[id]
             }
         }
     },
