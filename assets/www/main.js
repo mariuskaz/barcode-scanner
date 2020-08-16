@@ -13,6 +13,10 @@ let view = {
     },
 
     back() {
+        this
+        .hide('popup')
+        .show('scanner')
+        Quagga.start()
         history.back()
     },
 
@@ -45,15 +49,13 @@ let view = {
     
     submit() {
         let item = scanner.lastResult,
-        qty = view.get("input").value,
+        qty = this.get("input").value,
         location = document.querySelector('input[name=stock]:checked').value,
-        canvas = Quagga.canvas.dom.image,
-        result = document.createElement("div")
+        image = Quagga.canvas.dom.image,
+        result = document.createElement('div')
         result.setAttribute('class','thumbnail')
-        result.innerHTML = "<img src='"+canvas.toDataURL()+"'/><h3>"+item+": "+qty+"</h3>"
+        result.innerHTML = "<img src='"+image.toDataURL()+"'/><h3>"+item+": "+qty+"</h3>"
         this.get('results').prepend(result)
-        this.hide('popup').show('scanner')
-        Quagga.start()
         this.back()
     }
 },
@@ -76,7 +78,6 @@ scanner = {
                 aspectRatio: {min: 1, max: 2}
             }
 
-            /* defines rectangle of the detection/localization area */
             ,area: { 
                 top: "30%",    // top offset
                 right: "10%",  // right offset
@@ -108,20 +109,17 @@ scanner = {
     lastResult: null
 }
 
-scanner.init()
-
 Quagga.onDetected( result => {
     scanner.lastResult = result.codeResult.code
     console.log('Result:', scanner.lastResult)
     Quagga.pause()
 
-    view.update({ 
-        item: 'NV: ' + scanner.lastResult,
+    view
+    .hide('scanner')
+    .show('popup')
+    .update({
         input: ''
     })
-
-    view.hide('scanner')
-    .show('popup')
 
     setTimeout(() => { 
         view.get("input").focus() 
@@ -129,3 +127,5 @@ Quagga.onDetected( result => {
 
     history.pushState(null, null)
 })
+
+scanner.init()
