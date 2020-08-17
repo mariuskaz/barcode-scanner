@@ -10,7 +10,7 @@ let view = {
 
     sheets: {
         load(data) {
-            let list = document.getElementById('sheet')
+            let list = document.getElementById('sheets')
             data.forEach( item => list.options.add(new Option(item.name, item.id)) )
         }
     },
@@ -57,7 +57,7 @@ let view = {
     submit() {
         let item = this.get("item").value,
         qty = this.get("input").value,
-        sheet = this.get("sheet").value,
+        location = this.get("sheets").value,
         image = Quagga.canvas.dom.image,
         result = document.createElement('div')
         result.setAttribute('class','thumbnail')
@@ -118,7 +118,7 @@ scanner = {
 
 Quagga.onDetected( result => {
     scanner.lastResult = result.codeResult.code
-    console.log('Result:', scanner.lastResult)
+    console.log('Barcode:', scanner.lastResult)
     Quagga.pause()
 
     view
