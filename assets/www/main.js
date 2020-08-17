@@ -8,6 +8,13 @@ let view = {
         ],
     },
 
+    sheets: {
+        load(data) {
+            let list = document.getElementById('sheet')
+            data.forEach( item => list.options.add(new Option(item.name, item.id)) )
+        }
+    },
+
     get(id) {
         return document.getElementById(id)
     },
@@ -48,13 +55,13 @@ let view = {
     },
     
     submit() {
-        let item = scanner.lastResult,
+        let item = this.get("item").value,
         qty = this.get("input").value,
-        location = document.querySelector('input[name=stock]:checked').value,
+        sheet = this.get("sheet").value,
         image = Quagga.canvas.dom.image,
         result = document.createElement('div')
         result.setAttribute('class','thumbnail')
-        result.innerHTML = "<img src='"+image.toDataURL()+"'/><h3>"+"["+location+"] "+item+": "+qty+"</h3>"
+        result.innerHTML = "<img src='"+image.toDataURL()+"'/><h3>"+item+": "+qty+"</h3>"
         this.get('results').prepend(result)
         this.back()
     }
@@ -118,6 +125,7 @@ Quagga.onDetected( result => {
     .hide('scanner')
     .show('popup')
     .update({
+        item: scanner.lastResult,
         input: ''
     })
 
@@ -128,4 +136,5 @@ Quagga.onDetected( result => {
     history.pushState(null, null)
 })
 
+view.sheets.load(view.state.locations)
 scanner.init()

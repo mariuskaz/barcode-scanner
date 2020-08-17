@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Barcode</title>
+    <title>barcode-scanner</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
     <link rel="stylesheet" type="text/css" href="style.css" />
@@ -14,27 +14,20 @@
         <div id="scanner">
             <div id="scanline"></div>
             <div id="interactive" class="viewport"></div>
-            <div id="main">
-            <div class="title">INVENTORIZACIJA</div>
+            <div class="title">RESULTS</div>
             <div id="results"></div>
-            </div>
         </div>
         <div id="popup" class="full-screen">
-          <h3>SANDĖLIS:</h3>
-          <label class="container">P100 Panevėžiuko metalai
-            <input type="radio" name="stock" value="P100" checked>
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">P101 Gambinaičio sandėlis
-            <input type="radio" name="stock" value="P101">
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">K100 Kauno žaliavų sandėlis
-            <input type="radio" name="stock" value="K100">
-            <span class="checkmark"></span>
-          </label>
-          <div class="space"></div>
-          <h3 id="item"></h3>
+          <h3>SPREADSHEET</h3>
+          <select>
+            <option>Inventorizacija</option>
+          </select>
+          <br>
+          <select id="sheet">
+          </select>
+          <h3>STOCK</h3>
+          <input type="text" id="item" value="111000026" placeholder="barkodas">
+          <br>
           <input type="number" id="input" onkeyup="view.accept(event)" placeholder="kiekis"/>
           <div class="footer">
             <button id="back" onclick="view.back()">NE</button>
