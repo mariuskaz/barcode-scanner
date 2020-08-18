@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -7,7 +7,7 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
     <link rel="stylesheet" type="text/css" href="style.css" />
-    <script src="quagga.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.js" type="text/javascript"></script>
   </head>
   <body>
     <div id="app">
@@ -19,14 +19,10 @@
         </div>
         <div id="popup" class="full-screen">
           <h3>SPREADSHEET</h3>
-          <select id="files">
-            <option>Inventorizacija</option>
-          </select>
-          <br>
-          <select id="sheets">
-          </select>
+          <select id="spreadsheets"></select><br>
+          <select id="sheets"></select>
           <h3>STOCK</h3>
-          <input type="text" id="item" value="111000026" placeholder="barkodas">
+          <input type="text" id="item" placeholder="barkodas">
           <br>
           <input type="number" id="input" onkeyup="view.accept(event)" placeholder="kiekis"/>
           <div class="footer">
