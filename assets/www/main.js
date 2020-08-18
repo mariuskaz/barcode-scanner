@@ -1,41 +1,36 @@
-let view = {
+let state = {
+    
+    spreadsheets: [
+            { id:'25w00fkl45a7', name: 'Inventorizacija' }
+	],
 
-    state: {
-        locations: [
+    sheets: [
             { id: 'P100', name: 'P100 Panevėžiuko metalai' },
             { id: 'P101', name: 'P101 Gambinaičio sandėlis' },
             { id: 'K100', name: 'K100 Kauno žaliavų sandėlis' },
-        ],
-    },
+    ],
 
-    sheets: {
-        load(data) {
-            let list = document.getElementById('sheets')
-            data.forEach( item => list.options.add(new Option(item.name, item.id)) )
-        }
-    },
+},
+
+view = {
 
     get(id) {
         return document.getElementById(id)
     },
 
-    back() {
-        this
-        .hide('popup')
-        .show('scanner')
-        Quagga.start()
-        history.back()
-    },
-
     update(items) {
         for (let id in items) {
-            let el = this.get(id)
+            let el = this.get(id),
+            data = items[id]
             switch (el.nodeName) {
                 case 'INPUT':
-                    el.value = items[id]
+                    el.value = data
+                    break
+		        case 'SELECT':
+                    data.forEach( item => el.options.add(new Option(item.name, item.id)) )
                     break
                 case 'DIV':
-                    el.innerHTML = items[id]
+                    el.innerHTML = data
             }
         }
     },
@@ -64,7 +59,14 @@ let view = {
         result.innerHTML = "<img src='"+image.toDataURL()+"'/><h3>"+item+": "+qty+"</h3>"
         this.get('results').prepend(result)
         this.back()
+    },
+
+    back() {
+        history.back()
+        this.hide('popup').show('scanner')
+        Quagga.start()
     }
+
 },
 
 scanner = {
@@ -136,5 +138,9 @@ Quagga.onDetected( result => {
     history.pushState(null, null)
 })
 
-view.sheets.load(view.state.locations)
+view.update({ 
+    spreadsheets: state.spreadsheets,
+    sheets: state.sheets
+})
+
 scanner.init()
