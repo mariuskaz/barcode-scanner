@@ -1,13 +1,11 @@
 let state = {
     
     spreadsheets: [
-            { id:'25w00fkl45a7', name: 'Inventorizacija' }
+            { id:'none', name: 'Choose spreadsheet' }
 	],
 
     sheets: [
-            { id: 'P100', name: 'P100 Panevėžiuko metalai' },
-            { id: 'P101', name: 'P101 Gambinaičio sandėlis' },
-            { id: 'K100', name: 'K100 Kauno žaliavų sandėlis' },
+            { id: 'none', name: '' }
     ],
 
 },
