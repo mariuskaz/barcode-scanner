@@ -1,2 +1,2 @@
 # barcode-scanner
-Scan barcode to cloud spreadsheet.
+Scan barcode to google spreadsheet.
