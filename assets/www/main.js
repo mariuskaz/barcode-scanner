@@ -138,9 +138,4 @@ Quagga.onDetected( result => {
     history.pushState(null, null)
 })
 
-view.update({ 
-    spreadsheets: state.spreadsheets,
-    sheets: state.sheets
-})
-
 scanner.init()
