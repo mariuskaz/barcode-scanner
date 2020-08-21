@@ -8,6 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
     <link rel="stylesheet" type="text/css" href="style.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.js" type="text/javascript"></script>
+    <script async defer src="https://apis.google.com/js/api.js"
+      onload="loadClient()"
+      onreadystatechange="if (this.readyState === 'complete') onload()">
+    </script>
   </head>
   <body>
     <div id="app">
@@ -32,5 +36,6 @@
         </div>
     </div>
     <script src="main.js" type="text/javascript"></script>
+    <script src="gsuite.js" type="text/javascript"></script>
   </body>
 </html>
