@@ -1,11 +1,11 @@
 let state = {
     
     spreadsheets: [
-            { id:'none', name: 'Choose spreadsheet' }
-	],
+        // { id, name }
+    ],
 
     sheets: [
-            { id: 'none', name: '' }
+        // { id, name}
     ],
 
 },
@@ -48,9 +48,9 @@ view = {
     },
     
     submit() {
-        let item = this.get("item").value,
-        qty = this.get("input").value,
-        location = this.get("sheets").value,
+        let item = this.get('item').value,
+        qty = this.get('input').value,
+        location = this.get('sheets').value,
         image = Quagga.canvas.dom.image,
         result = document.createElement('div')
         result.setAttribute('class','thumbnail')
@@ -69,32 +69,32 @@ view = {
 
 scanner = {
     init() {
-        Quagga.init(this.state, function(err) {
+        Quagga.init(this.config, function(err) {
             if (err) alert(err)
                 else Quagga.start()
         })
     },
 
-    state: {
+    config: {
         inputStream: {
-            type : "LiveStream",
+            type : 'LiveStream',
             constraints: {
                 width: 480,
                 height: 480,
-                facingMode: "environment",
+                facingMode: 'environment',
                 aspectRatio: {min: 1, max: 2}
-            }
+            },
 
-            ,area: { 
-                top: "30%",    // top offset
-                right: "10%",  // right offset
-                left: "10%",   // left offset
-                bottom: "30%"  // bottom offset
+            area: { 
+                top: '30%',    // top offset
+                right: '10%',  // right offset
+                left: '10%',   // left offset
+                bottom: '30%'  // bottom offset
             } 
         },
 
         locator: {
-            patchSize: "large",
+            patchSize: 'large',
             halfSample: true
         },
 
@@ -103,7 +103,7 @@ scanner = {
 
         decoder: {
             readers : [{
-                format: "code_128_reader",
+                format: 'code_128_reader',
                 config: {}
             }],
             multiple: false
@@ -130,7 +130,7 @@ Quagga.onDetected( result => {
     })
 
     setTimeout(() => { 
-        view.get("input").focus() 
+        view.get('input').focus() 
     }, 500)
 
     history.pushState(null, null)
