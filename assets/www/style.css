@@ -7,8 +7,7 @@ body {
 button {
   border:0;
   background:none;
-  color-old:darkCyan;
-  color:#22aadd;
+  color:#22aadd; /* darkCyan */
   font-weight:bold;
   padding:10px 20px;
 }
@@ -35,7 +34,7 @@ select {
   background:white;
   height:24px;
   width:240px;
-  margin-bottom:15px;
+  margin-bottom:20px;
   border:0;
   border-bottom:1px solid #22aadd;
   outline:none;

@@ -6,19 +6,25 @@ let connect = function () {
 			// Replace with your own API credentials from Google Cloud Platform
 			apiKey: 'AIzaSyBg6TafQeM6mjdAgRi5hh2G1k9gAdxUkqA',
 			clientId: '549665734442-bc7pqd84f27s5rrl8j8e3sgrej0gfh9s.apps.googleusercontent.com',
+
 			discoveryDocs: [
-				"https://www.googleapis.com/discovery/v1/apis/drive/v3/rest",
-				"https://sheets.googleapis.com/$discovery/rest?version=v4"
+				'https://www.googleapis.com/discovery/v1/apis/drive/v3/rest',
+				'https://sheets.googleapis.com/$discovery/rest?version=v4'
 			],
+			
 			scope: 'https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/spreadsheets',
 
 		}).then(() => {
-			let signed = gapi.auth2.getAuthInstance().isSignedIn.get()
-			if (!signed) {
-				gapi.auth2.getAuthInstance().signIn().then(
-				gapi.auth2.getAuthInstance().isSignedIn.listen(getSpreadSheets))
-			} else {
+			let client = gapi.auth2.getAuthInstance()
+			signed = client.isSignedIn.get()
+
+			if (signed) {
 				getSpreadSheets(signed)
+				
+			} else {
+				client.signIn().then(
+					client.isSignedIn.listen(getSpreadSheets)
+				)
 			}
 
 		})
@@ -29,20 +35,24 @@ let connect = function () {
 getSpreadSheets = function (signed) {
 
 	if (signed) {
+
 		gapi.client.drive.files.list({
 			'q': 'mimeType="application/vnd.google-apps.spreadsheet"',
 			'pageSize': 100,
-			'fields': "nextPageToken, files(id, name)"
+			'fields': 'nextPageToken, files(id, name)'
 
 		}).then(response => {
 			let files = response.result.files
 			console.log('Spreadsheets on Drive: ' + files.length)
+			state.spreadsheets = []
+			state.spreadsheets.push({ id: 'none', name: 'Choose spreadsheet' })
 			if (files && files.length > 0) {
-				state.spreadsheets.push({ id: 'none', name: 'Choose spreadsheet' })
 				files.forEach(file => state.spreadsheets.push({ id: file.id, name: file.name }))
 				view.update({ spreadsheets: state.spreadsheets })
 			}
+			
 		})
+
 	}
 
 },
