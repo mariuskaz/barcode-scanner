@@ -15,7 +15,11 @@ button {
 
 button:hover {
   background:lightgray;
-}  
+}
+
+button:disabled {
+  color: gray;
+}
 
 input {
   border:0;
