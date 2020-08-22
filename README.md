@@ -1,2 +1,2 @@
-# barcode-scanner
-Scan barcode to google spreadsheet.
+# gs-barcode-scanner
+Scan barcode with android to google spreadsheet.
