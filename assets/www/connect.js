@@ -55,6 +55,7 @@ getSheets = function () {
     }).then( response => {
 		let sheets = response.result.sheets
 		console.log('Sheets in spreadsheet:', sheets.length)
+		state.sheets = []
 		if (sheets && sheets.length > 0) {
 			sheets.forEach(sheet => {
 				state.sheets.push({ id: sheet.properties.index, name: sheet.properties.title } )
