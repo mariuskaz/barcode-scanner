@@ -24,7 +24,7 @@ view = {
                 case 'INPUT':
                     el.value = data
                     break
-		        case 'SELECT':
+                case 'SELECT':
                     data.forEach( item => el.options.add(new Option(item.name, item.id)) )
                     break
                 case 'DIV':

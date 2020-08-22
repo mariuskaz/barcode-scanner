@@ -7,7 +7,7 @@ let connect = function() {
               apiKey: 'AIzaSyBg6TafQeM6mjdAgRi5hh2G1k9gAdxUkqA',
               clientId: '549665734442-bc7pqd84f27s5rrl8j8e3sgrej0gfh9s.apps.googleusercontent.com',
               discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"],
-              scope: 'https://www.googleapis.com/auth/drive',
+              scope: 'https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/spreadsheets',
 
       }).then( () => {
               let signed = gapi.auth2.getAuthInstance().isSignedIn.get()
@@ -40,5 +40,18 @@ getSpreadSheets = function(signed) {
         }
     })
   }
+  
+},
+
+getSheets = function() {
+
+  console.log(view.get('spreadsheets').value)
+  gapi.client.sheets.spreadsheets.get({
+      spreadsheetId: view.get('spreadsheets').value
+  }).then(function(response) {
+      console.log(response.result.sheets)
+  }, function(response) {
+      console.log('Error: ' + response.result.error.message);
+  })
   
 }
