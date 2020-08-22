@@ -24,14 +24,14 @@
         <div id="popup" class="full-screen">
           <h3>SPREADSHEET</h3>
           <select id="spreadsheets" onchange="getSheets()"></select><br>
-          <select id="sheets"></select>
+          <select id="sheets" style="display:none"></select>
           <h3>STOCK</h3>
           <input type="text" id="item" placeholder="barkodas">
           <br>
           <input type="number" id="input" onkeyup="view.accept(event)" placeholder="kiekis"/>
           <div class="footer">
-            <button id="back" onclick="view.back()">NE</button>
-            <button id="accept" onclick="view.submit()">GERAI</button>
+            <button id="back" onclick="view.back()">CANCEL</button>
+            <button id="submit" onclick="view.submit()" disabled>SUBMIT</button>
           </div>
         </div>
     </div>

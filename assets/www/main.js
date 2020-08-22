@@ -5,8 +5,10 @@ let state = {
     ],
 
     sheets: [
-        // { id, name}
+        // { id, name }
     ],
+    
+    ready: false,
 
 },
 
@@ -43,8 +45,13 @@ view = {
         return this
     },
 
+    enable(id) {
+        view.get(id).disabled = false
+        return this
+    },
+
     accept(e) {
-        if (e.keyCode == 13) this.submit()
+        if (state.ready && e.keyCode == 13) this.submit()
     },
     
     submit() {
