@@ -58,12 +58,31 @@ view = {
     submit() {
         let item = this.get('item').value,
         qty = this.get('input').value,
-        location = this.get('sheets').value,
         image = Quagga.canvas.dom.image,
         result = document.createElement('div')
         result.setAttribute('class','thumbnail')
         result.innerHTML = "<img src='"+image.toDataURL()+"'/><h3>"+item+": "+qty+"</h3>"
         this.get('results').prepend(result)
+
+        let params = {
+            spreadsheetId: this.get('spreadsheets').value, 
+            range: this.get('sheets').selectedOptions[0].text + '!A:C',
+            valueInputOption: 'RAW',  
+            insertDataOption: 'INSERT_ROWS', 
+        },
+
+        valueRangeBody = {
+            values: [[ new Date().toLocaleDateString(), item, qty ]]
+        }
+    
+        gapi.client.sheets.spreadsheets.values
+        .append(params, valueRangeBody)
+        .then( response => {
+            console.log('Update status:', response.status)
+        }, reason => {
+            alert('Error: ' + reason.result.error.message)
+        })
+
         this.back()
     },
 
