@@ -54,10 +54,10 @@ public class MainActivity extends Activity {
 			webView.goBack();
 		} else { 
 			new AlertDialog.Builder(this)
-				.setTitle("Inventorizacija")
-				.setMessage("Baigti?")
-				.setNegativeButton("Ne", null)
-				.setPositiveButton("Taip", new DialogInterface.OnClickListener() {
+				.setTitle("GS barcode scanner")
+				.setMessage("Exit?")
+				.setNegativeButton("No", null)
+				.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						finish();    
