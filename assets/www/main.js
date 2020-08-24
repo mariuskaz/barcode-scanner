@@ -1,11 +1,13 @@
 let state = {
     
     spreadsheets: [
-        // { id, name }
+        { id: 'none', name: 'Inventory' }
     ],
 
     sheets: [
-        // { id, name }
+         { id: 'sheet1', name: 'Sheet1' },
+         { id: 'sheet2', name: 'Sheet2' },
+         { id: 'sheet3', name: 'Sheet3' }
     ],
     
     ready: false,
@@ -52,7 +54,7 @@ view = {
     },
 
     accept(e) {
-        if (state.ready && e.keyCode == 13) this.submit()
+        if (e.keyCode == 13) this.submit()
     },
     
     submit() {
@@ -63,26 +65,6 @@ view = {
         result.setAttribute('class','thumbnail')
         result.innerHTML = "<img src='"+image.toDataURL()+"'/><h3>"+item+": "+qty+"</h3>"
         this.get('results').prepend(result)
-
-        let params = {
-            spreadsheetId: this.get('spreadsheets').value, 
-            range: this.get('sheets').selectedOptions[0].text + '!A:C',
-            valueInputOption: 'RAW',  
-            insertDataOption: 'INSERT_ROWS', 
-        },
-
-        valueRangeBody = {
-            values: [[ new Date().toLocaleDateString(), item, qty ]]
-        }
-    
-        gapi.client.sheets.spreadsheets.values
-        .append(params, valueRangeBody)
-        .then( response => {
-            console.log('Update status:', response.status)
-        }, reason => {
-            alert('Error: ' + reason.result.error.message)
-        })
-
         this.back()
     },
 

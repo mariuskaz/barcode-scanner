@@ -54,7 +54,7 @@ public class MainActivity extends Activity {
 			webView.goBack();
 		} else { 
 			new AlertDialog.Builder(this)
-				.setTitle("GS barcode scanner")
+				.setTitle("Barcode scanner")
 				.setMessage("Exit?")
 				.setNegativeButton("No", null)
 				.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
